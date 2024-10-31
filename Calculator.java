@@ -10,6 +10,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+/**
+ * 사칙연산을 계산하는 계산기 프로그램입니다.
+ * @author Kim Hui Jin (khj1382443111@gmail.com)
+ * @since 1.0
+ * 
+ * @created 2024-10-30
+ * @lastModified 2024-11-01
+ * 
+ * @see
+ */
+
 public class Calculator extends JFrame {
 	JTextField label;
 	String num = "";
@@ -115,7 +126,9 @@ public class Calculator extends JFrame {
 		
 		this.add(btnPanel);
 	}
-	
+	/**
+	 * @param inputText
+	 */
 	void parsing(String inputText) {
 		value.clear();
 		
@@ -133,7 +146,10 @@ public class Calculator extends JFrame {
 		value.add(num);
 		value.remove("");
 	}
-	
+	/**
+	 * @param inputText
+	 * @return 계산한 값
+	 */
 	double calculate(String inputText) {
 		parsing(inputText);
 		
