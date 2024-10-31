@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,12 +11,21 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class Calculator extends JFrame {
-	JButton[] btn;
 	
 	public Calculator() {
 		this.setLayout(null);
 		getContentPane().setBackground(Color.WHITE);
 		
+		label(); btn();
+		
+		this.setTitle("계산기");
+		this.setSize(330, 435);
+		this.setVisible(true);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	void label() {
 		JTextField label = new JTextField("0") {
 			@Override
 			public void setBorder(Border border) {
@@ -28,6 +39,10 @@ public class Calculator extends JFrame {
 		label.setBackground(Color.WHITE);
 		label.setEditable(false);
 		
+		this.add(label);
+	}
+	
+	void btn() {
 		JPanel btnPanel = new JPanel(new GridLayout(5, 4, 3, 3));
 		btnPanel.setBounds(5, 92, 304, 300);
 		
@@ -38,7 +53,7 @@ public class Calculator extends JFrame {
 			btn[i] = new JButton(btnName[i]);
 			btn[i].setFont(new Font("Dialog", Font.PLAIN, 17));
 			if(btnName[i] == "=") {
-				btn[i].setBackground(Color.BLUE);
+				btn[i].setBackground(new Color(70, 130, 180));
 				btn[i].setForeground(Color.WHITE);
 			}
 			else if(btnName[i] == "CE" || btnName[i] == "C" || btnName[i] == "←" || btnName[i] == "÷" || btnName[i] == "×" || btnName[i] == "−" || btnName[i] == "+"){
@@ -47,18 +62,18 @@ public class Calculator extends JFrame {
 			else {
 				btn[i].setBackground(Color.WHITE);
 			}
+			//btn[i].addActionListener(new @@@@@@@@@);
 			btn[i].setBorderPainted(false);
 			btnPanel.add(btn[i]);
 		}
 		
-		this.add(label);
 		this.add(btnPanel);
-		
-		this.setTitle("계산기");
-		this.setSize(330, 435);
-		this.setVisible(true);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	class PadActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String operation = e.getActionCommand();
+		}
 	}
 
 	public static void main(String[] args) {
