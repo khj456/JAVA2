@@ -41,6 +41,9 @@ public class Calculator extends JFrame {
 				btn[i].setBackground(Color.BLUE);
 				btn[i].setForeground(Color.WHITE);
 			}
+			else if(btnName[i] == "CE" || btnName[i] == "C" || btnName[i] == "←" || btnName[i] == "÷" || btnName[i] == "×" || btnName[i] == "−" || btnName[i] == "+"){
+				btn[i].setBackground(new Color(230, 230, 230));
+			}
 			else {
 				btn[i].setBackground(Color.WHITE);
 			}
