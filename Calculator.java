@@ -32,7 +32,7 @@ public class Calculator extends JFrame {
 		label = new JTextField() {
 			@Override
 			public void setBorder(Border border) {
-				// 테두리 없애기
+				
 			}
 		};
 		
@@ -55,6 +55,7 @@ public class Calculator extends JFrame {
 		
 		ActionListener btnActionListener = e -> {
 			String operation = e.getActionCommand();
+			String prevOperation = "";
 			
 			if (operation.equals("C")) {
 				num = "";
@@ -79,10 +80,19 @@ public class Calculator extends JFrame {
 				}else{
 					label.setText("−" + label.getText());
 				}
-			}		
+			}
+			else if (operation.equals("+") || operation.equals("-") || operation.equals("×") || operation.equals("÷")) {
+				if (label.getText().equals("") && operation.equals("-")) {
+					label.setText(label.getText() + e.getActionCommand());
+				}
+				else if (!label.getText().equals("") && !prevOperation.equals("+") && !prevOperation.equals("−") && !prevOperation.equals("×") && !prevOperation.equals("÷")) {
+					label.setText(label.getText() + e.getActionCommand());
+				}
+			}
 			else {
 				label.setText(label.getText() + e.getActionCommand());
 			}
+			prevOperation = e.getActionCommand();
 		};
 		
 		for(int i = 0; i < btnName.length; i++) {
@@ -121,6 +131,7 @@ public class Calculator extends JFrame {
 			}
 		}
 		value.add(num);
+		value.remove("");
 	}
 	
 	double calculate(String inputText) {
@@ -130,37 +141,59 @@ public class Calculator extends JFrame {
 		double current = 0;
 		String mode = "";
 		
+		for (int i = 0; i < value.size(); i++) {
+			String s = value.get(i);
+			
+			if (s.equals("+")) {
+				mode = "add";
+			} else if (s.equals("−")) {
+				mode = "sub";
+			} else if (s.equals("×")) {
+				mode = "mul";
+			} else if (s.equals("÷")) {
+				mode = "div";
+			} else {
+				if ((mode.equals("mul") || mode.equals("div")) && !s.equals("+") && !s.equals("−") && !s.equals("×") && !s.equals("÷")) {
+					Double one = Double.parseDouble(value.get(i - 2));
+					Double two = Double.parseDouble(value.get(i));
+					Double result = 0.0;
+					
+					if (mode.equals("mul")) {
+						result = one * two;
+					} else if (mode.equals("div")) {
+						result = one / two;
+					}
+					value.add(i + 1, Double.toString(result));
+					
+					for (int j = 0; j < 3; j++) {
+						value.remove(i - 2);
+					}
+					i -= 2;
+				}
+			}
+		}
+		
 		for (String s : value) {
 			if (s.equals("+")) {
 				mode = "add";
 			} else if (s.equals("−")) {
 				mode = "sub";
 			}  
-			else if (s.equals("×")) {
-				mode = "mul";
-			}  
-			else if (s.equals("÷")) {
-				mode = "div";
-			}  else {
+			else {
 				current = Double.parseDouble(s);
 				
 				if (mode.equals("add")) {
 					prev += current;
-				} else if (mode.equals("sub")) {
+				}
+				else if (mode.equals("sub")) {
 					prev -= current;
-				} 
-				else if (mode.equals("mul")) {
-					prev *= current;
-				} 
-				else if (mode.equals("div")) {
-					prev /= current;
-				} else {
+				}
+				else {
 					prev = current;
 				}
 			}
 			prev = Math.round(prev * 100000) / 100000.0;
 		}
-		
 		return prev;
 	}
 
