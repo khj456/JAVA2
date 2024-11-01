@@ -16,7 +16,7 @@ import javax.swing.border.Border;
  * 사용자는 버튼을 클릭하여 숫자와 연산자를 입력하고 결과를 확인할 수 있습니다.
  * 
  * @author Kim Hui Jin (khj1382443111@gmail.com)
- * @version 1.0
+ * @version 1.3
  * 
  * @created 2024-10-30
  * @lastModified 2024-11-01
