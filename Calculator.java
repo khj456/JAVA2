@@ -167,6 +167,8 @@ public class Calculator extends JFrame {
 		}
 		value.add(num);
 		value.remove("");
+		value.add(0,"0");
+		value.add(1,"+");
 	}
 	
 	/**
