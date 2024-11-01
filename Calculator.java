@@ -20,7 +20,6 @@ import javax.swing.border.Border;
  * 
  * @created 2024-10-30
  * @lastModified 2024-11-01
- * 
  * @see <a href="https://code-review.tistory.com/entry/%ED%81%B4%EB%A1%A0%EC%BD%94%EB%94%A9-%EC%9E%90%EB%B0%94%EB%A1%9C-%EA%B3%84%EC%82%B0%EA%B8%B0-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0">
  *      자바로 계산기 구현하기</a>
  */
